@@ -1,5 +1,12 @@
+import React from 'react';
+import JoinBlock from './components/JoinBlock';
+
 function App() {
-	return <div className="App">app</div>;
+	return (
+		<div className="wrapper">
+			<JoinBlock />
+		</div>
+	);
 }
 
 export default App;
