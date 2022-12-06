@@ -14,6 +14,7 @@ const io = require('socket.io')(server, {
 
 const rooms = new Map();
 
+//позволяет в теле запроса отправлять json данные
 app.use(express.json());
 //разрешаем запросы
 //app.use(cors());
@@ -21,6 +22,22 @@ app.use(express.json());
 //настройка веб приложения
 app.get('/rooms', (req, res) => {
 	res.json(rooms);
+});
+
+app.post('/rooms', (req, res) => {
+	const { roomId, userName } = req.body;
+	console.log(req.body);
+	//ответит 200
+	if (!rooms.has(roomId)) {
+		rooms.set(
+			roomId,
+			new Map([
+				['users', new Map()],
+				['messages', []],
+			]),
+		);
+	}
+	res.send();
 });
 
 //настройка сокетов
